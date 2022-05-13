@@ -39,5 +39,6 @@ class PostController extends Controller
         $post->save();
 
         PostServices::updateImage($post, $file);
+        PostServices::updateTags($post, $tags);
     }
 }
