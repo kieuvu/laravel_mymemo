@@ -2,9 +2,9 @@
 @section("content")
 <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 mt-3">
     <form id="postCreate" action="{{route('client.post.creat.process')}}" method="POST" enctype="multipart/form-data"
-        class="space-y-8 divide-y divide-gray-200">
+        class="space-y-8 ">
         @csrf
-        <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
+        <div class="space-y-8 sm:space-y-5">
             <div>
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -15,12 +15,15 @@
                     </p>
                 </div>
 
-                <div class="mt-6 sm:mt-5 space-y-3 sm:space-y-2">
+                <div class="mt-6 sm:mt-5 space-y-3 sm:space-y-2 sm:border-t sm:border-gray-200">
                     <div x-data="showImage()" class="flex items-center justify-center  ">
                         <div class="bg-white rounded-lg shadow-xl md:w-9/12 lg:w-1/2">
                             <div class="m-4">
-                                <label class="inline-block mb-2 text-gray-500">Choose Image (JPG, PNG,
+                                <label class="inline-block m-0 text-gray-500">Choose Image (JPG, PNG,
                                     GIF...)</label>
+                                @if($errors->has('image'))
+                                <span class="text-danger mb-1 d-block">{{$errors->first('image')}}</span>
+                                @endif
                                 <div class="flex items-center justify-center w-full">
                                     <label
                                         class="flex flex-col w-full h-64 border-4 border-dashed hover:bg-gray-100 hover:border-gray-300">
@@ -65,6 +68,9 @@
                             <input
                                 class="shadow-sm border rounded-md w-full py-2 px-3  sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                                 id="title" placeholder="Title here" name="title">
+                            @if($errors->has('title'))
+                            <span class="text-danger mt-2 d-block">{{$errors->first('title')}}</span>
+                            @endif
                         </div>
                     </div>
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -78,6 +84,9 @@
                                         <input x-model="textInput" x-ref="textInput"
                                             class="shadow-sm border rounded-md w-full py-2 px-3  sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                                             id="tags" placeholder="Tags here">
+                                        @if($errors->has('tags'))
+                                        <span class="text-danger mt-2 d-block">{{$errors->first('tags')}}</span>
+                                        @endif
                                         <template x-for="(tag, index) in tags">
                                             <div
                                                 class="bg-indigo-100 inline-flex items-center text-sm rounded mt-2 mr-1">
@@ -102,8 +111,8 @@
             </div>
         </div>
 
-        <div class="divide-y divide-gray-200 pt-8 space-y-6 sm:pt-10 sm:space-y-5" style="margin-top:20px">
-            <div class="space-y-6 sm:space-y-5 divide-y divide-gray-200">
+        <div class="space-y-6  sm:space-y-5 sm:border-t sm:border-gray-200" style="margin-top:20px">
+            <div class="space-y-6 sm:space-y-5">
                 <div class="pt-6 sm:pt-5">
                     <div role="group" aria-labelledby="label-notifications">
                         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
@@ -215,11 +224,15 @@
 
     $("#postCreate").submit(function(e){
         let arr = [];
+        let tags = ""
         $.each($(".tag_name"), function (index, item) {
             arr.push(item.innerText);
         });
 
-        let tags = JSON.stringify(arr);
+        if(arr.length > 0) {
+            tags = JSON.stringify(arr);
+        }
+
 
         $("#postCreate").append(
             `

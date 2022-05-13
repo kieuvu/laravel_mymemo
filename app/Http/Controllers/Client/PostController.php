@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Services\PostServices;
+use App\Http\Requests\Client\PostRequest;
 
 class PostController extends Controller
 {
@@ -22,7 +23,7 @@ class PostController extends Controller
         return view('pages.client.post.create');
     }
 
-    public function createPost(Request $request)
+    public function createPost(PostRequest $request)
     {
         $tags   = json_decode($request->tags);
         $title  = $request->title;
