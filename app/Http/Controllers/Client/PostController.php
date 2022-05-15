@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Services\PostServices;
 use App\Http\Requests\Client\PostRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
@@ -41,5 +42,7 @@ class PostController extends Controller
 
         PostServices::updateImage($post, $file);
         PostServices::updateTags($post, $tags);
+
+        return Redirect::back();
     }
 }
