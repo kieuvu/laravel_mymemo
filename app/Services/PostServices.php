@@ -9,8 +9,13 @@ class PostServices
 {
   static public function updateImage(Post $post, $file)
   {
-    $response         = cloudinary()->upload($file->getRealPath())->getSecurePath();
+    $response = cloudinary()->upload(
+      $file->getRealPath(),
+      array("folder" => "mymemo")
+    )->getSecurePath();
+
     $post->image_link = $response;
+
     return $post->save();
   }
 
