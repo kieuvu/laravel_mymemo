@@ -45,4 +45,10 @@ class PostController extends Controller
 
         return Redirect::back();
     }
+
+    public function search(Request $request)
+    {
+        $result = Post::search($request->q)->get();
+        return response()->json($result);
+    }
 }
