@@ -37,3 +37,6 @@ Route::prefix('/my_gallery')->middleware('auth')->group(function () {
         Route::post('/process', 'App\Http\Controllers\Client\PostController@createPost')->name('client.post.creat.process');
     });
 });
+
+
+Route::get("/search", "App\Http\Controllers\Client\PostController@search");
