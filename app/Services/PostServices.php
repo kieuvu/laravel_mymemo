@@ -7,6 +7,21 @@ use App\Models\Tag;
 
 class PostServices
 {
+
+  public static function newPost(string $title, string $slug, string $author, int $status): Post
+  {
+    $post         = new Post();
+
+    $post->title  = $title;
+    $post->slug   = $slug;
+    $post->author = $author;
+    $post->status = $status;
+
+    $post->save();
+
+    return $post;
+  }
+
   static public function updateImage(Post $post, $file)
   {
     $response = cloudinary()->upload(

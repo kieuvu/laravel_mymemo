@@ -39,4 +39,4 @@ Route::prefix('/my_gallery')->middleware('auth')->group(function () {
 });
 
 
-Route::get("/search", "App\Http\Controllers\Client\PostController@search");
+Route::get("/search", "App\Http\Controllers\Client\PostController@search")->name('client.search');

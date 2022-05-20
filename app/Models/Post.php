@@ -19,7 +19,7 @@ class Post extends Model
     protected $mapping = [
         'properties' => [
             'title' => [
-                'type' => 'text'
+                'type' => 'text',
             ],
         ]
     ];

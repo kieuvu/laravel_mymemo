@@ -6,7 +6,7 @@
 <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
   <div class="mansory" id="mansory_items">
     @foreach ($recent_posts as $post)
-    <figure>
+    <figure class="mb-4">
       <img src="{{$post->image_link}}" />
       <figcaption><a href="#">{{$post->author}}</a></figcaption>
 
@@ -22,20 +22,18 @@
           <div class="img__impress-icon img__impress-like d-flex align-items-center">
             <i class="far fa-heart"></i>
             <span style="width:4px"></span>
-            <span class="img__impress-count">{{$post->likes}}</span>
           </div>
           <span style="width:12px"></span>
           <div class="img__impress-icon img__impress-download d-flex align-items-center">
             <i class="far fa-save"></i>
             <span style="width:4px"></span>
-            <span class="img__impress-count">{{$post->downloads}}</span>
           </div>
         </div>
       </div>
     </figure>
     @endforeach
   </div>
-  <div class="flex justify-center mb-5">
+  <div class="flex justify-center my-5">
     {{ $recent_posts->links() }}
   </div>
 </div>

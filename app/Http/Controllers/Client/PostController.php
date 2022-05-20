@@ -33,12 +33,8 @@ class PostController extends Controller
         $author = Auth::user()->name;
         $slug   = Carbon::now()->format('s') . Str::random(10);
 
-        $post         = new Post();
-        $post->title  = $title;
-        $post->slug   = $slug;
-        $post->author = $author;
-        $post->status = $status;
-        $post->save();
+
+        $post = PostServices::newPost($title, $slug, $author, $status);
 
         PostServices::updateImage($post, $file);
         PostServices::updateTags($post, $tags);
@@ -48,7 +44,15 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        $result = Post::search($request->q)->get();
-        return response()->json($result);
+        if ($request->q) {
+            $result = Post
+                ::search($request->q)
+                ->query(function ($builder) {
+                    $builder->with('tags');
+                })
+                ->get();
+            return response()->json($result);
+        }
+        return response()->json(['msg' => "Empty query"]);
     }
 }
