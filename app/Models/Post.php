@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use ElasticScoutDriverPlus\Searchable;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Post extends Model
 {
@@ -19,7 +20,7 @@ class Post extends Model
     protected $mapping = [
         'properties' => [
             'title' => [
-                'type' => 'text'
+                'type' => 'text',
             ],
         ]
     ];
@@ -36,5 +37,10 @@ class Post extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author', 'name');
     }
 }

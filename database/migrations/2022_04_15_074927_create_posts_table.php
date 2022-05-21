@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('title');
             $table->string('slug')->unique()->index();
-            $table->string('author');
+            $table->string('author')->index();
             $table->text('image_link')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('downloads')->default(0);
