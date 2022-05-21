@@ -31,8 +31,8 @@ class PostController extends Controller
         $file   = $request->file('image');
         $status = ($request->hidden) ? 0 : 1;
         $author = Auth::user()->name;
-        $slug   = Carbon::now()->format('s') . Str::random(10);
-
+        $slug   = Carbon::now()
+            ->format('s') . Str::random(10);
 
         $post = PostServices::newPost($title, $slug, $author, $status);
 
@@ -45,8 +45,7 @@ class PostController extends Controller
     public function search(Request $request)
     {
         if ($request->q) {
-            $result = Post
-                ::search($request->q)
+            $result = Post::search($request->q)
                 ->query(function ($builder) {
                     $builder->with('tags');
                 })

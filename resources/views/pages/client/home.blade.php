@@ -8,28 +8,26 @@
     @foreach ($recent_posts as $post)
     <figure class="mb-4">
       <img src="{{$post->image_link}}" />
-      <figcaption><a href="#">{{$post->author}}</a></figcaption>
 
-      <div class="img__title">
+      <div class="img__title mb-2">
         <h6 class="img__title-text text-overfl-3line "><a href="">{{$post->title}}</a></h6>
       </div>
 
-      <div class="img__impress">
-        <div class="img__impress-icon img__impress-save d-flex align-items-center">
-          <i class="fas fa-plus-circle"></i>
+      <div class="d-flex justify-between">
+        <div class="d-flex align-items-center">
+          <img class="mr-1" style="width:30px;border-radius:50%" src="{{$post->user['avatar']}}" alt="">
+          <a class="font-medium" href="#">{{$post->author}}</a>
         </div>
         <div class="d-flex">
           <div class="img__impress-icon img__impress-like d-flex align-items-center">
             <i class="far fa-heart"></i>
-            <span style="width:4px"></span>
           </div>
-          <span style="width:12px"></span>
-          <div class="img__impress-icon img__impress-download d-flex align-items-center">
+          <div class="ml-3 img__impress-icon img__impress-download d-flex align-items-center">
             <i class="far fa-save"></i>
-            <span style="width:4px"></span>
           </div>
         </div>
       </div>
+
     </figure>
     @endforeach
   </div>

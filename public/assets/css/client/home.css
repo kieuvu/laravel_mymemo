@@ -6,6 +6,7 @@
     -webkit-line-clamp: 3;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+    padding-bottom: 3px;
 }
 
 img {
@@ -33,18 +34,7 @@ figure a {
     text-decoration: none;
 }
 
-figure .img__impress {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-figure .img__impress .img__impress-count {
-    color: red;
-    font-size: 16px;
-}
-
-figure .img__impress .img__impress-icon > i {
+figure .img__impress-icon > i {
     cursor: pointer;
     color: red;
     font-size: 20px;
@@ -59,52 +49,38 @@ figure .img__title .img__title-text {
     font-family: "Poppins", sans-serif;
 }
 
-figcaption {
-    grid-row: 2;
-    grid-column: 1;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 0.2em 0.5em;
-    justify-self: start;
-    border-radius: 0 5px 0 0;
-}
-
 .mansory {
     margin-top: 10px;
     column-count: 2;
-    column-gap: 10px;
+    column-gap: 20px;
 }
 
 @media (min-width: 576px) {
     .mansory {
         column-count: 2;
-        column-gap: 10px;
     }
 }
 
 @media (min-width: 768px) {
     .mansory {
         column-count: 3;
-        column-gap: 10px;
     }
 }
 
 @media (min-width: 992px) {
     .mansory {
         column-count: 3;
-        column-gap: 10px;
     }
 }
 
 @media (min-width: 1200px) {
     .mansory {
         column-count: 4;
-        column-gap: 10px;
     }
 }
 
 @media (min-width: 1536) {
     .mansory {
         column-count: 5;
-        column-gap: 10px;
     }
 }
